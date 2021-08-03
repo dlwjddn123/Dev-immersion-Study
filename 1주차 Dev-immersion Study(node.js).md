@@ -194,10 +194,190 @@ num = "일이삼"
 </pre>
 
 -----------------------
-# 라이브러리와 
+# 라이브러리와 프레임워크의 차이
+
++ ## Framework(프레임워크)
+<pre>
+<code>
+ 프레임워크는 뼈대나 기반구조를 뜻하는데, 
+ pplication 개발 시 필수적인 코드, 알고리즘, 데이터베이스 연동 등과 같은 기능들을 위해 어느정도 뼈대(구조)를 제공해주는 것이다.
+그러므로 그러한 뼈대 위에 프로그래머가 코드를 작성하여 Application을 완성시켜야 한다.
+어느정도 뼈대를 제공해 주기 때문에, 객체 지향 개발을 하면서 일관성 부족 등의 문제를 해결해 준다. 
+
+그래서 소프트웨어에서는 프레임워크를 "소프트웨어의 특정 문제를 해결하기 위해서 상호 협력하는 클래스와 인터페이스의 집합"
+이라고 정의하기도 한다.
+</pre>
+</code>
+
+
++ ## Library(라이브러리)
+<pre>
+<code>
+Library는 특정 기능에 대한 도구나 함수들을 모은 집합이다.
+즉, 프로그래머가 개발하는데 필요한 것들을 모아둔 것이다.
+
+Library는 "단순 활용이 가능한 도구들의 집합"이라고 간단하게 정의할 수 있다.
+</pre>
+</code>
+
+
+# 프레임워크와 라이브러리의 차이 - Inversion Of Control
+
+<img src="https://t1.daumcdn.net/cfile/tistory/99F18D3359FB4E2F0C">
+
+<pre>
+<code>
+Framework와 Library의 차이는 Flow(흐름)에 대한 제어 권한이 어디에 있느냐의 차이이다.
+프레임워크는 전체적인 흐름을 자체적으로 가지고 있으며,
+프로그래머가 그 안에 필요한 코드를 작성하는 반면에 라이브러리는 사용자가 흐름에 대해 제어를 하며 필요한 상황에 가져다 쓰는 것이다. 
+이 내용을 한 문장으로 정리하자면 프레임워크에는 제어의 역전(Inversion Of Control)이 적용되어있다는 것이다.
+
+제어의 역전(Inversion Of Control)이란 어떠한 일을 하도록 만들어진 프레임워크에
+제어의 권한을 넘김으로써 클라이언트 코드가 신경서야 할 것을 줄이는 전략이다.
+일반적으로 우리는 프로젝트를 생성하고 Main함수를 만들어서 시작지점을 형성한다.
+그리고 Main 함수에서 프로그램의 흐름을 정하는 것은 프로그래머의 몫으로
+우리가 어떠한 순서를 부여하느냐에 따라서 흐름을 제어하는 것이 일반적인 사고이다. 
+
+하지만 여기서 프레임워크는 일반적인 사고와 반대되는 모습을 보여주는데
+실행의 흐름을 프레임워크 자체가 가지고 있어서 우리의 코드를 프레임워크안에 넣어서 개발을 진행해야 한다.
+실제로 Maven과 같은 프레임워크의 프로젝트를 생성해보면 어느정도 뼈대를 만들어서 그 안에 필요에 따라 우리의 코드를 넣는다.
+일반적으로 프로그래머가 가지고 있어야하는 제어의 권한을 프레임워크에게 주었기 때문에 우리는 이를 제어의 역전이라고 말한다.
+</pre>
+</code>
 
 
 
+# Rest APR란 무엇인가?
 
++ ## REST란?
+<pre>
+<code>
+REST(REpresentational State Transfer)란, “웹에 존재하는 모든 자원(이미지, 동영상, DB 자원)에
+고유한 URI를 부여해 활용” 하는 것으로, 자원을 정의하고 자원에 대한 주소를 지정하는 방법론을 의미한다고 한다.
+이런 REST의 형식을 따른 시스템을 RESTful 이라고 부른다. 쉽게 말해 컴퓨터 시스템들의 대화법이다.
+</pre>
+</code>
+
+
++ ## REST API란?
+<pre>
+<code>
+HTTP URI를 통해 자원을 명시하고, HTTP Method를 통해 해당 자원에 대한CRUD Operation을 적용한다.
+</pre>
+</code>
+HTTP Method, CRUD Operation.
+<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcDWqJe%2FbtqJMwgeMhG%2FR14H2KkFyGPZm2RKd0Gtr0%2Fimg.png">
+
+          
+
+
++ ## REST 구성요소
+<pre>
+<code>
+1. 자원 (Resource), URI
+
+  모든 자원은 고유한 ID를 가지며, 이는 서버에 저장되어 있다.
+  클라이언트는 자원의 상태를 조작하기 위해 요청을 보낸다.
+  HTTP에서 이러한 자원을 구별하는 ID는 'Users/1' 같은 HTTP URI이다.
+  
+2. 행위 (Verb), Method
+
+  클라이언트는 URI를 이용해 자원을 지정하고 자원을 조작하기 위해
+  HTTP Method를 사용한다. 대표적으로 GET, POST, PUT, DELETE 메소드들이 있다.
+  
+3. 표현 (Representation)
+
+  클라이언트가 서버로 요청을 보냈을 때 서버가 응답으로 보내주는 자원의 상태를 Representation이라고
+  한다. 자원의 형태는 JSON, XML, Text, RSS 등 여러형태로 나타낸다.
+</pre>
+</code>
+
+
++ ## REST의 특징?
+<pre>
+<code>
+1. 클라이언트 - 서버 구조 
+
+  자원을 요청하는 Client, 자원이 있는 Server 구조를 갖는다.
+  
+2. 무상태 (Stateless)
+
+  HTTP는 Stateless 프로토콜이므로, REST 역시 무상태성을 따른다.
+  즉, 서버는 클라이언트의 Context를 저장하지 않는다.
+
+3. 캐시 처리 가능 (Cacheable)
+
+  웹 표준 HTTP 프로토콜 기반이므로, 웹에서 사용하는 기존의 인프라를 그대로 활용한다.
+
+4. 계층화
+
+  API서버는 순수 비지니스 로직을 수행하고 그 앞단에 사용자 인증, 암호화, 로드밸런싱 등을
+  하는 계층을 추가하여 구조상의 유연성을 줄 수 있다.
+
+5. 인터페이스 일관성 (Uniform Interface)
+
+  URI로 지정한 자원에 대한 조작을 통일되고 한정적인 인터페이스로 수행한다.
+  HTTP 표준에만 따른다면 모든 플랫폼에서 사용가능하다.
+
+6. 자체 표현 구조
+
+  동사 (Method) + 명사(URI) 로 이루어져 있어 어떤 메소드에 무슨 행위를 하는지 알 수 있다.
+  즉 REST API 메세지 자체만으로도 API를 파악할 수 있다.
+  
+
+</pre>
+</code>
+
+
+# Node.js BE Framework
+
+## 1. Express
+
+<pre>
+<code>
+Express는 웹 및 모바일 어플리케이션 개발을 위한 강력한 기능 모음을 제공하는
+인기있고 빠르며, 최소한의 유연한 MVC(Model-View-Controller)Node.js 프레임 워크이다.
+
+기존 Node.js 기능에 추가되는 얇은 기본 웹 어플리케이션 기능을 제공하는 라우팅 라이브러리 세트이다.
+고성능에 중점을 두고 강력한 라우팅과 HTTP 도우미(리디렉션, 캐싱 등)를 지원하고,
+14개 이상의 템플릿 엔진, 컨텐츠 협상 및 응용 프로그램을 빠르게 생성하기 위한
+실행 파일을 지원하는 뷰 시스템이 제공된다.
+
+또한 Express에는 사용하기 쉬운 많은 HTTP유틸리티 메소드, 함수 및 미들웨어가 제공되므로,
+개발자가 강력한 API를 쉽고 빠르게 작성할 수 있다.
+</pre>
+</code>
+
+
+## 2. Nest.js
+
+<pre>
+<code>
+Nest.js는 효율적이고 안정적이며, 확장 가능한 서버 측 어플리케이션을 구축하기 위한
+유연하고 다재다능하며 진보적인 Node.js REST API프레임 워크이다.
+최신 JavaScript를 사용하며 TypeScript로 빌드 된다.
+OOP(Object Oriented Programming), FP(Fuctional Programming), 
+FRP(Fuctional Reactive Programming)의 요소를 결합한다.
+</pre>
+</code>
+
+## 3. Sails.js
+
+<pre>
+<code>
+Sails.js는 Express에 구축된 Node.js를 위한 실시간 MVC 웹 개발 프레임 워크이다.
+MVC아키텍처는 Ruby on Rails와 같은 프레임 워크와 유사하지만 보다 최신의 데이터 중심 스타일의
+웹 앱 및 API 개발을 지원한다는 점에서 다르다.
+</pre>
+</code>
+
+## 4. Koa.js
+
+<pre>
+<code>
+Koa.js는 Express 개발자가 구축한 새로운 웹 프레임 워크이며, ES2017 비동기 기능을 사용한다.
+콜백 지옥의 앱을 제거하고 오류 처리를 단순하하기 위해 약속 및 비동기 기능을 사용한다.
+</pre>
+</code>
 
 
