@@ -247,7 +247,7 @@ Framework와 Library의 차이는 Flow(흐름)에 대한 제어 권한이 어디
 
 
 
-# Rest APR란 무엇인가?
+# Rest API란 무엇인가?
 
 + ## REST란?
 <pre>
