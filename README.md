@@ -1,2 +1,1 @@
-# test
-git알아가기
+# Dev-immersion Study
