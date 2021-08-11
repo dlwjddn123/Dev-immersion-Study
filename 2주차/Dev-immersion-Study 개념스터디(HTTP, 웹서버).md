@@ -63,7 +63,7 @@ HTTP(Hyper Text Transfer Protocol) 는 **인터넷에서 데이터를 주고받�
 </pre>
 <br>
 
-#### 이 외에도 HEAD, OPTIONS가 있다
+#### 이 외에도 HEAD, OPTIONS등이 있다
 <br>
 <br>
 
@@ -80,8 +80,6 @@ HTTP2는**Multiplexed Streams, Stream Prioritization, Server Push, Header Compre
 성능 뿐만 아니라 속도 또한 눈에 띄게 향상 시켰다.<br>
 <br>
 
-<img src="https://miro.medium.com/max/875/1*m3TqLQ2sXE51-6b8rNLsmA.gif" width=70% height=70% >
-
 **Multiplexed Streams : 하나의 연결에서 여러개의 메세지를 동시에 주고 받을 수 있음** <br>
 **Stream Prioritization : 요청 리소스간 의존관계를 설정할 수 있음** <br>
 **Server Push : HTML문서상에 필요한 리소스를 클라이언트의 요청 없이 보내줄 수 있음** <br>
@@ -89,18 +87,28 @@ HTTP2는**Multiplexed Streams, Stream Prioritization, Server Push, Header Compre
 
 
 <br>
+<br>
+<br>
+
 
 + ### 서버와 클라이언트
 <br>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Client-server-model.svg/1200px-Client-server-model.svg.png" width=80% height=80% >
 
 클라이언트란? **네트워크가 연결되어있는 서버로부터 정보를 제공받는 컴퓨터를 의미한다.** <br>
 예를 들면, 우리가 게임 클라이언트로 접속한다는 것은 게임 서버로부터 정보는 제공받는다는 것이다. <br>
 그렇다면 서버란? **클라이언트에게 네트워크를 통해 정보를 제공하는 컴퓨터를 의미한다.** <br>
 ex) 우리가 Node.js로 서버를 구축하고 서비스를 배포하면 다른 사람들이 우리 서버를 통해 웹을 사용할 수 있는 것이다. <br>
 **컴퓨터라고만 말했지만 컴퓨터프로그램, 장치가 될 수도 있다.**
+<br>
+<br>
+<br>
+<br>
+<br>
 
 + ### 상태코드
 <br>
+<img src="https://t4.daumcdn.net/thumb/R720x0/?fname=http://t1.daumcdn.net/brunch/service/user/1ffs/image/xxIKsvvQTLvhC0FJTrZIPuFas3o.jpg" width=65% height=65% >
 
 상태코드는 **3자리 숫자**로 구성되고 **첫번째(백의 자리)자리는 1부터 5까지 있다**.<br>
 **첫번째 자리 코드가 4,5인 경우는 정상적으로 작동하지 않았을 때 뜨는 코드로 사이트를 관리하는 괸리자라면 <br>
@@ -113,10 +121,14 @@ ex) 우리가 Node.js로 서버를 구축하고 서비스를 배포하면 다른
 + 5xx(서버오류): 서버가 명백하게 유효한 요청에 대해 충족을 실패 <br>
 
 **이렇게 크게보면 5가지 종류가 있고 그 안에서 각각의 상태마다 더 자세하게 분류된다**
+<br>
+<br>
+<br>
+<br>
 
 + ### 쿠키와 세션
 <br>
-
+<img src="https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F241EE049582DA37607" width=75% height=75% >
 
 **쿠키와 세션을 사용하는 이유** <br>
 
@@ -224,6 +236,7 @@ HTTP 프로토콜은 connectionless, stateless이라는 두 가지 특징이자 
 ----------------------------------
 ## 2. apache, nginx와 Node.js의 차이
 <br>
+<img src="https://miro.medium.com/max/500/1*Kf9t7AlcpVFLufrAbcEX0w.png">
 
 **먼저 웹 서버와 WAS(Web Application Server)에 대한 개념부터 이해해보자**
 <br>
@@ -252,6 +265,7 @@ HTTP 프로토콜은 connectionless, stateless이라는 두 가지 특징이자 
 
 ------------------------------------------------------
 ## 3. RDBMS와 NoSQL의 종류, 장단점 비교 <br>
+<img src="https://blog.kakaocdn.net/dn/bpf9l6/btqV0DvZMge/SCtUJH8ffnd4JIzJSVuGDK/img.png">
 
 ### RDBMS란? <br>
 
