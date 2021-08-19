@@ -185,6 +185,169 @@ JWT 정보를 request에 담아 사용자응 정보 열람, 수정 등 개인적
 <br>
 <br>
 
-## 테스트 프레임워크
+-------------------
+
+## 테스트 프레임워크 <br>
+
+**테스트 프레임워크**는 우리가 짠 코드가 제대로 동작하는 지 확인하기 위해 테스트 케이스를 만들어주는 프레임워크다. <br>
+
+테스트의 종류는  <br>
++ 유닛테스트 : 애플리케이션의 개별 모듈을 독립적으로 테스트-> 보통 메서드 단위의 테스트
++ E2E 테스트 :  해당 시스템과 해당 시스템을 구축하고 배포하는 프로세스를 모두 시험하는 것을 말함 
++ 통합테스트 : 모듈을 통합하는 과정에서 모듈 간 호환성의 문제를 찾아내기 위해 수행되는 테스트 <br>
+
+이렇게 3가지로 구성되고, 그 중에서도 **유닛 테스트**를 작성하는데 집중하는 것이 필요하다.
+
+### Jest
+
+<img src="https://media.vlpt.us/images/seongkyun/post/89f3edd8-c776-47c6-97cb-c616a2bb3f40/1_Q26gw-kNzOXUqZKRr04T-g.png">
+<br>
+
+Jest는 자바스크립트 코드의 테스트를 도와주는 모듈이라고 생각하면 되겠다. <br>
+**특징으로는 Jest의 가장 큰 장점은 쉬운 설치 및 사용 방법이라 할 수 있다.
+Jest는 테스트 러너의 기능뿐 아니라, 단언, 테스트 더블, 코드 커버리지 등 테스트에 필요한 모든 기능을 지원하기 때문에 별다른 추가 설치가 필요 없다.** <br>
+
+간단한 사용예시는 expect()와 toBe()를 사용
+
+``` javascript
+test("1 is 1", () => {
+  expect(1).toBe(1);
+});
+```
+
+이렇게 expect안의 값이 toBe안의 값이 된다면(같다면) 테스트는 성공이고 아니라면 실패다. <br>
+이외에도 beforeEach, afterEach ,toEqual, describe, it 등 여러가지 사용할 수 있는것들이 있다. <br>
+
+--------------------------
+## Dependency Injection(DI) <br>
+
+**Dependency Injection**이란? 해석하면 **의존성 주입**이라는 뜻을 가지고 있다. <br>
+의존성 주입 설명에 앞서 여기서 말하는 **의존성**은 OOP(객체지향프로그래밍)에서 클래스간에 의존 관게가 있다는 것을 말하는데, <br>
+클래스 간에 의존관계가 있다는 것은 **한 클래스가 바뀔 때 다른 클래스가 영향을 받는것**을 의미한다. <br>
+
+그래서 의존성 주입이란? 클래스간 의존성을 클래스 외부에서 주입하는 것을 뜻한다. <br>
+더 자세하게는 **클래스에 대한 의존성의 인터페이스화를 통한 코드 유연성 증대 + 클래스의 인스턴스를 외부에서 생성하여 주입**을 뜻한다. <br>
+
+이것이 필요한 이유는 클래스에서 어떤 한 메소드(예시)가 바뀌면 그 의존성을 가지고 있던 메소드에 모두 영향을 끼치게 되는데, <br>
+이때 의존성을 가지고 있던 코드를 전부 수정해줘야 하는 번거로운 일이 생긴다. 따라서 우리는 인터페이스, 혹은 클래스 외부에서<br>
+객체를 생성하여 해당객체를 클래스 내부에 주입해줘야 이런 문제를 방지할 수 있다. <br>
+
+<img src ="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbWWKoP%2Fbtq1aRug7wa%2FW7AblITwYgfSvJzA7Yjv31%2Fimg.png"> <br>
+
+위 이미지 처럼 외부에서 객체를 가져오면 코드를 전부 수정할 필요 없이 외부 container(객체를 저장하는 공간)만 수정하면 된다. <br>
+이렇게 되면 객체에 대한 제어 권한을 container가 가지게 되는데 이를 IOC(Inversion of Control)제어의 역전 이라고 부른다. <br>
+
+#### DI의 장점
++ 클래스간의 결합도가 약해져, 리펙토링이 쉬워진다.
++ 클래스간의 결합도가 약해져 특정 클래스를 테스트하기 편해진다.
++ 인터페이스 기반 설계는 코드를 유연하게 하고 확장을 쉽게 한다.
+<br>
+
+-----------------------------------------
+## Decorator
+<br>
+Decorator(장식자)는 하나의 코드를 다른 코드로 감싸거나, 함수를 감싸는 방법이다. <br>
+Decorator는 동일한 클래스의 다른 객체의 동작에 영향을 주지 않고, 정적, 동적으로 개별 객체에 동작을 추가할 수 있다. <br>
+기본 기능을 수정하지 않고 기능을 향상시키는데 사용된다.
+
+```javascript
+function work() {
+  console.log('Some work...');
+}
+function helloWrapper(wrapped) {
+  return function(...args) {
+    else {
+      console.log('Hello!');
+      wrapped.apply(this, args);
+    }
+  }
+}
+
+const wrapped = helloWrapper(work);
+```
+
+#### 사용 예시
+``` javascript
+work();
+// Some work...
+
+wrapped();
+// Hello!
+// Some work...
+```
+#### 결과
+<br>
+
+#### 데코레이터를 사용하는 이유
++ Higher-order function보다 적용하기 쉽다. 특히, Class나 Class member들에 적용할 때는 훨씬 편하다.
++ 읽기 쉽고 코드를 더 깔끔하게 할 수 있다. <br>
+
+
+
+----------------------------
+
+## Nest.js
+<br>
+<img src="https://cdn.inflearn.com/public/courses/327273/cover/77c59c6c-7f86-4d04-ad98-5593defbf6a6/Subscribe%20for%20more%E1%84%8B%E1%85%B4%20%E1%84%89%E1%85%A1%E1%84%87%E1%85%A9%E1%86%AB%20(3).png">
+<br>
+
+### Nest.js란? <br>
+공식 사이트의 설명을 빌려오자면 <br>
+<pre>
+<code>  
+A progressive Node.js framework for building efficient, reliable and scalable server-side applications. <br>
+효율적이고 안정적이며 확장 가능한 서버 측 애플리케이션을 구축하기 위한 진보적인 Node.js 프레임워크입니다. <br>
+</pre>
+</code>
+<br>
+
+**의미있게 봐야하는 문장은 효율적이고 안정적 이라는 문장이다.** <br>
+
+우리는 이 전에 express.js로 웹을 구현한 적이 있다. express.js도 크게 불편함을 느끼진 못했지만 그 이유는 <br>
+우리가 아직 대규모 프로젝트를 안해봤고 express는 자유도가 높기 때문에 개발자마다 사용하는 기술, 미들웨어 등이 다를 수 있다. <br>
+이는 프로젝트의 통일성을 해치게 되고 그에 따른 수많은 문제가 발생할 수 있다는 말이다. <br>
+
+Nest.js는 이런 문제를 개선해주는데 controller, service, module의 구조와 특정한 패턴을 가지고 있다. <br>
+이 구조와 패턴들은 코드를 안정적이고 통일성 있게 해주므로 거대한 프로젝트를 만들기 좋다는 장점을 가진다. <br>
+
+**Express => 가볍고 간편하고 빠르게 간단한 웹을 위한 서버를 만들기 좋다** <br>
+**Nest => 통일성 있고 거대한 프로젝트를 만들기 좋다 (자바스크립트계의 스프링이라고도 불림)** <br>
+
+Nestjs를 이번에 사용해보면서 느끼는 점은 틀이 잡혀있어서 좋고 어떻게 써야하는 지 빨리 배우고 싶었지만 <br>
+아직 널리 쓰이고 있진 않기 때문에 혼자 배우기가 좀 어려운 부분이 있다.(스프링처럼 널리쓰이는 날이 오기를..) <br>
+<br>
+<br>
+
+-------------------------------------------------
+## 데이터베이스 ORM 
+
+<br>
+
+**ORM(Object-relational Mapping)** 이란 OOP 간의 호환되지 않는 데이터를 변환하는 프로그래밍 기법으로 쉽게 말해 객체로 관계형 데이터베이스를 관리하는 기술이다.<br>
+대부분의 개발 언어 platform마다 제공되고 있으며, 대표적으로 spring에는 JPA가, node의 sequalize, 또 Django에는 orm이 내장되어있다. <br>
+
+<br>
+
+
++ 기존 SQL 방식의 문제점 <br>
+
+<br>
+
+기존의 SQL로 데이터베이스를 관리하던 때의 문제점은 계속되는 반복되는 코드의 문제점이 있었고,<br>
+SQL을 확인하기 전까지는 Entity를 신뢰할 수 없다는 불편함이 있었다.<br>
+또한 SQL의 의존적인 개발을 피할 수 없고, 계층 분할의 어려움이 있었다.<br>
+
+<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fbbm0c4%2FbtqAt7X6ism%2FSTaECebTshwAD1FiI01FAK%2Fimg.png">
+
+<br>
+
++ ORM을 사용 했을 때 장점  <br>
+
+객체 관계 매핑(Object-relational Mapping)이란 말에 어울리게 ORM을 사용하면 객체는 객체대로 설계하고,<br>
+관계형 데이터베이스는 데이터베이스대로 설계하고 중간에서 ORM 프레임워크가 중간에서 매핑을 해주어서로 의존성을 배제할 수 있다.<br>
+이를 통해 생산성과 유지보수 성에서 높은 이득을 얻을 수 있다.<br>
+
+<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F8GQk1%2FbtqAuMMJKz2%2Fo0QP6sOkvfxmbHUNHLwFj1%2Fimg.png">
+
 
 
